@@ -1,15 +1,37 @@
 const nodemailer = require('nodemailer');
 
 const transportador = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
+    host: "smtp.gmail.com",
+    port: "587",
+    secure: false,
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: "",
+        pass: ""
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
-module.exports = transportador;
+// const configEmail = {
+//     from: "",
+//     to: "",
+//     subject: "test",
+//     html: "<p>teste</p>"
+// }
+
+const configEmail = (userEmail) => {
+    return {
+        from: process.env.EMAIL_USER,
+        to: userEmail
+    }
+}
+
+exports.enviarEmail = async (userEmail) => {
+    const emailEnviado = await transportador.sendMail(configEmail(userEmail))
+}
+
+
 
 
 const mensagemHTML = `
