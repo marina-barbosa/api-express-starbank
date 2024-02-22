@@ -1,0 +1,24 @@
+user: {
+    nome: string,
+    cpf: string,
+   telefone: string,
+   endereço: string,
+   email: string,
+   senha: string,
+    saldoTotal: number,
+    transacoes: {
+      id: number,
+      tipo: string,
+      data: Date,
+      detalhes: string[],
+      valor: number
+    }[],
+    avatar: string,
+    cartao: {
+      numero: string,
+      titular: string,
+      validade: string,
+      cvv: string,
+      tipo: string
+    }
+  };

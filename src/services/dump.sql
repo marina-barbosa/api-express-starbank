@@ -1,0 +1,44 @@
+-- SQLBook: Markup
+CREATE TABLE IF NOT EXISTS usuarios (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  cpf VARCHAR(11) NOT NULL UNIQUE,
+  telefone VARCHAR(11) NOT NULL,
+  endereco VARCHAR(255) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  senha VARCHAR(100) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS saldo (
+  id SERIAL PRIMARY KEY,
+  usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+  saldoTotal INTEGER NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS transacoes (
+  id SERIAL PRIMARY KEY,
+  usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+  tipo VARCHAR(50),
+  data DATE NOT NULL,
+  detalhes VARCHAR(255),
+  valor INTEGER NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS avatar (
+  id SERIAL PRIMARY KEY,
+  usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+  usuario_avatar VARCHAR(255)
+)
+
+CREATE TABLE IF NOT EXISTS cartao (
+  id SERIAL PRIMARY KEY,
+  usuario_id INTEGER NOT NULL REFERENCES usuarios(id),
+  numero VARCHAR(255) NOT NULL,
+  titular VARCHAR(100) NOT NULL,
+  validade VARCHAR(50) NOT NULL,
+  cvv VARCHAR(3) NOT NULL,
+  tipo VARCHAR(10) NOT NULL
+)
+-- SQLBook: Code
+
+-- SQLBook: Code
